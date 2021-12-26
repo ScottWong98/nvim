@@ -8,7 +8,12 @@ function config.nvim_lsp()
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = { noremap=true, silent=false }
     buf_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', 'g[', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', 'g]', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<leader>l', ':lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '<leader>f', ':lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
   end
   local servers = { 'pyright' }
   for _, lsp in ipairs(servers) do
@@ -19,8 +24,6 @@ function config.nvim_lsp()
       }
     }
   end
-  nvim_lsp.pyright.setup {
-  }
 end
 
 function config.telescope()
