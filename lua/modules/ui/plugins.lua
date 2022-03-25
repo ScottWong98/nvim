@@ -1,24 +1,25 @@
 local ui = {}
 local conf = require('modules.ui.config')
 
--- ui['glepnir/zephyr-nvim'] = {
---   config = [[vim.cmd('colorscheme zephyr')]]
--- }
+ui["kyazdani42/nvim-web-devicons"] = { opt = false }
 
-ui['shaeinst/roshnivim-cs'] = {
-  config = [[vim.cmd('colorscheme rvcs')]]
+ui["catppuccin/nvim"] = {
+  opt = false,
+  as = "catppuccin",
+  config = conf.catppuccin,
+}
+
+ui['folke/tokyonight.nvim'] = {
+  disable = true,
+  config = [[vim.cmd('colorscheme tokyonight')]]
 }
 
 ui['nvim-lualine/lualine.nvim'] = {
   config = conf.lualine,
-  requires = {'kyazdani42/nvim-web-devicons'}
 }
 
 ui['akinsho/nvim-bufferline.lua'] = {
   config = conf.nvim_bufferline,
-  requires = {
-    {'kyazdani42/nvim-web-devicons'},
-  }
 }
 
 ui['lukas-reineke/indent-blankline.nvim'] = {

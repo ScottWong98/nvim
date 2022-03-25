@@ -1,13 +1,65 @@
 local config = {}
 
-function config.galaxyline()
-  require('modules.ui.eviline')
-end
-
 function config.lualine()
   require('lualine').setup {
-    extensions = {'quickfix'},
+    options = {
+      theme = 'catppuccin',
+    },
+    extensions = {
+      'quickfix',
+    }
+
   }
+end
+
+function config.catppuccin()
+  require("catppuccin").setup({
+    transparent_background = true,
+    term_colors = true,
+    styles = {
+      comments = "italic",
+      functions = "bold",
+      keywords = "NONE",
+      strings = "NONE",
+      variables = "NONE",
+    },
+    integrations = {
+      treesitter = true,
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = "italic",
+          hints = "italic",
+          warnings = "italic",
+          information = "italic",
+        },
+        underlines = {
+          errors = "underline",
+          hints = "underline",
+          warnings = "underline",
+          information = "underline",
+        },
+      },
+      lsp_trouble = true,
+      lsp_saga = true,
+      gitgutter = false,
+      gitsigns = true,
+      telescope = true,
+      nvimtree = { enabled = true, show_root = true },
+      which_key = true,
+      indent_blankline = { enabled = true, colored_indent_levels = false },
+      dashboard = true,
+      neogit = false,
+      vim_sneak = false,
+      fern = false,
+      barbar = false,
+      bufferline = true,
+      markdown = true,
+      lightspeed = false,
+      ts_rainbow = true,
+      hop = true,
+    },
+  })
 end
 
 function config.nvim_bufferline()
@@ -22,9 +74,7 @@ function config.nvim_bufferline()
   }
 end
 
-
 function config.indent_blankline()
-
   vim.g.indent_blankline_char = "│"
   vim.g.indent_blankline_show_first_indent_level = true
   vim.g.indent_blankline_filetype_exclude = {
@@ -71,39 +121,8 @@ function config.indent_blankline()
 end
 
 function config.nvim_tree()
-  vim.g.nvim_tree_indent_markers = 1
-  vim.g.nvim_tree_highlight_opened_files = 0
-  vim.g.nvim_tree_quit_on_open = 1
-  vim.g.nvim_tree_icons = {
-    -- default =  '',
-    symlink =  '',
-    git = {
-     unstaged = "✚",
-     staged =  "✚",
-     unmerged =  "≠",
-     renamed =  "≫",
-     untracked = "★",
-    },
-  }
-  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-  local keymap_list = {
-    { key = "l",     cb = tree_cb('edit') },
-    { key = "s",     cb = tree_cb('vsplit') },
-    { key = "i",     cb = tree_cb('split') },
-  }
-  -- On Ready Event for Lazy Loading work
-  -- require("nvim-tree.events").on_nvim_tree_ready(
-  --   function()
-  --     vim.cmd("NvimTreeRefresh")
-  --   end
-  -- )
   require('nvim-tree').setup {
-    update_focused_file = { enable = 1 },
-    filters = { dotfiles = 1 },
-    view = {
-      mappings = { list = keymap_list },
-    },
+
   }
 end
-
 return config

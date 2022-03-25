@@ -9,7 +9,6 @@ local create_dir = function()
     global.cache_dir .. "swap",
     global.cache_dir .. "tags",
     global.cache_dir .. "undo",
-
   }
   -- Only check once that if cache_dir exists
   if vim.fn.isdirectory(global.cache_dir) == 0 then
@@ -34,6 +33,7 @@ local leader_map = function()
   vim.api.nvim_set_keymap('i', 'jk', '<Esc>', {noremap = true})
 end
 
+
 local load_core = function()
   local pack = require('core.pack')
   create_dir()
@@ -47,6 +47,8 @@ local load_core = function()
   require('core.mapping')
   require('keymap')
   pack.load_compile()
+
+  vim.cmd([[colorscheme catppuccin]])
 end
 
 load_core()
